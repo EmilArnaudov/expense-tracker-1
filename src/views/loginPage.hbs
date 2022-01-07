@@ -7,6 +7,29 @@
     <title>Document</title>
 </head>
 <body> --}}
-    <h1>Hello there</h1>
+    <div class="row">
+        <div class="col-md-4 col-lg-5 col-sm-4"></div>
+
+        <div class="col-md-4 col-lg-2  col-sm-4 d-flex justify-content-center border padding-xl">
+            <form action="" method="post">
+                <label for="username">Username</label>
+                <input type="text" placeholder="Enter username..." name="username" required>
+
+                <label for="password">Password</label>
+                <input type="text" placeholder="Enter password..." name="password" required>
+
+                <label>
+                    <input type="checkbox" checked="checked" name="remember">Remember Me
+                </label>
+                <br>
+                <button type="submit" class="btn btn-primary">Login</button>
+
+
+            </form>
+        </div>
+
+        <div class="col-md-4 col-lg-5 col-sm-4 "></div>
+    </div>
+
 {{!-- </body>
 </html> --}}
