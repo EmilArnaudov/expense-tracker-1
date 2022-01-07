@@ -1,7 +1,7 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
 const routes = require('./routes');
-
+const path = require('path');
 
 
 // Init application
@@ -14,6 +14,8 @@ app.engine('hbs', engine({
 }));
 
 app.set('view engine', 'hbs')
+
+
 
 //Set up routes
 app.use(routes);
