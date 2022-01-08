@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -16,6 +17,11 @@ const userSchema = new mongoose.Schema({
         minlength: [8, 'Password must be between 8 - 30 characters.'],
         maxlength: [30, 'Password must be between 8 - 30 characters.']
     }
+})
+
+userSchema.pre('save', async () => {
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
 })
 
 const User = mongoose.model('User', userSchema);
