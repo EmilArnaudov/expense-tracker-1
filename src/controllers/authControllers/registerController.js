@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
     try {
         let user =  new User({username, password});
         await user.save();
-        res.redirect('/home');
+        res.redirect('/login');
     } catch (err) {
         let errorMessage = err.message.split('password: ')[1];
         res.render('registerPage', {errorMessage})
