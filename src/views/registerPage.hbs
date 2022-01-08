@@ -23,7 +23,9 @@
 
                 <label for="password" class="">Repeat Password</label>
                 <input type="text" class="form-control" placeholder="Enter password..." name="repeatPassword" required>
-
+                {{#if errorMessage}}
+                    <p class="errorMessage">{{errorMessage}}</p>
+                {{/if}}
                 <br>
                 <button type="submit" class="btn btn-primary">Register</button>
                 <hr>
