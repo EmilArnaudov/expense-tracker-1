@@ -2,7 +2,6 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const routes = require('./routes');
 const path = require('path');
-const { urlencoded } = require('express');
 
 
 // Init application
@@ -18,8 +17,9 @@ app.engine('hbs', engine({
 }));
 app.set('view engine', 'hbs')
 
+
 //Set up static files
-app.use(express.static(path.resolve(__dirname, './public')));
+app.use(express.static(path.normalize(path.join(__dirname, '../public'))));
 
 //Set up routes
 app.use(routes);

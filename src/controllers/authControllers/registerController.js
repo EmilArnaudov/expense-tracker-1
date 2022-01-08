@@ -5,7 +5,7 @@ router.get('/', (req, res) => {
     res.render('registerPage');
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     let {username, password, repeatPassword} = req.body;
 
     if (password !== repeatPassword) {
@@ -13,7 +13,14 @@ router.post('/', (req, res) => {
         return;
     }
 
-    res.render('registerPage');
+    try {
+        let user =  new User({username, password});
+        await user.save();
+        res.redirect('/home');
+    } catch (err) {
+        let errorMessage = err.message.split('password: ')[1];
+        res.render('registerPage', {errorMessage})
+    }
 
 })
 

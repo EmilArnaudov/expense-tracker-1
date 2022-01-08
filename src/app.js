@@ -1,10 +1,15 @@
 const app = require('./config/express');
 const constants = require('./utils/constants');
-const express = require('express');
-const path = require('path');
+const mongoose = require('mongoose');
+const DB_STRING = require('./utils/constants');
 
 
-console.log(__dirname);
-app.listen(constants.PORT, () => {
-    console.log(`Server is running on port ${constants.PORT}`);
-})
+mongoose.connect(constants.DB_STRING)
+    .then(() => {
+        app.listen(constants.PORT, () => {
+            console.log('Successfully connected to database...')
+            console.log(`Server is running on port ${constants.PORT}...`);
+        })
+    })
+    .catch(err => {console.log(`Could not start server: ${err}`)})
+

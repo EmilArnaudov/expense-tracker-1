@@ -29,3 +29,9 @@ html, body {
 .bright:hover {
     filter: brightness(1.23);
 }
+
+.errorMessage {
+    color: red;
+    font-size: small;
+    width: 30%;
+}

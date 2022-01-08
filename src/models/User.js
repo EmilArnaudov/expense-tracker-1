@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        validate: [/^[a-zA-Z]\w+$/, 'Username can contain only alphanumeric characters ([A-Z] [a-z] [0-9] and \'_\')'],
+        validate: [/^[a-zA-Z0-9_]+$/, 'Username can contain only alphanumeric characters ([A-Z] [a-z] [0-9] and \'_\')'],
         minlength: [6, 'Username must be between 6 - 18 characters.'],
         maxlength: [18, 'Username must be between 6 - 18 characters.'],
         unique: true,
@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        validate: [/^[a-zA-Z]\w+$/, 'Password can contain only alphanumeric characters ([A-Z] [a-z] [0-9] and \'_\')'],
+        validate: [/^[a-zA-Z0-9_]+$/, 'Password can contain only alphanumeric characters ([A-Z] [a-z] [0-9] and \'_\')'],
         minlength: [8, 'Password must be between 8 - 30 characters.'],
         maxlength: [30, 'Password must be between 8 - 30 characters.']
     }

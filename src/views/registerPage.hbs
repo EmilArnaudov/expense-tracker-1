@@ -8,8 +8,9 @@
         <div class="col-lg-6 text-center text-secondary header-color">
             <h1>Expense Tracker</h1>
         </div>
+        <div class="col-lg-3"></div>
     </div>
-    <div class="col-lg-3"></div>
+    
     <div class="row">
         <div class="col-xs-3 col-md-4 col-lg-4 col-sm-5"></div>
 
@@ -23,9 +24,7 @@
 
                 <label for="password" class="">Repeat Password</label>
                 <input type="text" class="form-control" placeholder="Enter password..." name="repeatPassword" required>
-                {{#if errorMessage}}
-                    <p class="errorMessage">{{errorMessage}}</p>
-                {{/if}}
+
                 <br>
                 <button type="submit" class="btn btn-primary">Register</button>
                 <hr>
@@ -34,6 +33,17 @@
 
             </form>
         </div>
-
         <div class="col-xs-3 col-md-4 col-lg-4 col-sm-5"></div>
     </div>
+
+    {{#if errorMessage}}
+    <div class="row ptb-4">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6 d-flex justify-content-center">
+            
+            <p class="errorMessage">{{errorMessage}}</p>
+            
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    {{/if}}
