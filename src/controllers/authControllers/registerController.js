@@ -18,7 +18,17 @@ router.post('/', async (req, res) => {
         await user.save();
         res.redirect('/login');
     } catch (err) {
+        console.log(err.message);
         let errorMessage = err.message.split('password: ')[1];
+
+        if (!errorMessage) {
+            errorMessage =  err.message.split('username: ')[1];
+        }
+
+        if (!errorMessage) {
+            errorMessage = 'Username already taken.';
+        }
+
         res.render('registerPage', {errorMessage})
     }
 
