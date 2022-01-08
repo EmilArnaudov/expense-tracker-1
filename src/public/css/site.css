@@ -4,7 +4,7 @@ html, body {
   }
   
   body {
-      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background: linear-gradient(-45deg, #a386d3, #6b9bd1, #6490c2, #967ac2);
       background-size: 400% 400%;
       animation: gradient 15s ease infinite;
   }
@@ -20,3 +20,12 @@ html, body {
           background-position: 0% 50%;
       }
   }
+
+.header-color {
+    color: #79b0de;
+    font-size: 130%;
+}
+
+.bright:hover {
+    filter: brightness(1.23);
+}

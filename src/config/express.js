@@ -12,10 +12,10 @@ app.engine('hbs', engine({
     defaultLayout: 'main',
     extname: '.hbs',
 }));
-
 app.set('view engine', 'hbs')
 
-
+//Set up static files
+app.use(express.static(path.resolve(__dirname, './public')));
 
 //Set up routes
 app.use(routes);
