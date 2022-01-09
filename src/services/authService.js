@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const jwtSign = require('../utils/jwtUtils').jwtSign
-const constants = require('../utils/constants')
+const constants = require('../utils/constants');
 
 exports.register = async function (username, password) {
     try {
@@ -20,6 +20,21 @@ exports.register = async function (username, password) {
 
         return errorMessage
     }
+}
+
+exports.login =  function(username, password) {
+    return User.findOne({username})
+        .then(user => Promise.all([user.validatePassword(password), user]))
+        .then(([isValid, user]) => {
+            console.log(isValid);
+            console.log(user);
+            if (isValid) {
+                return user;
+            } else {
+                throw TypeError('Username wrong')
+            }
+        })
+        .catch(() => null);
 }
 
 
