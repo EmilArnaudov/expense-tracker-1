@@ -8,10 +8,10 @@ exports.authenticate = function(req, res, next) {
 
     // If not found do nothing // means user is guest
     if (!cookie) {
-        next();
+        return res.status(401).redirect('/login');
     }
 
-    jwtVerify(token, constants.SECRET)
+    jwtVerify(cookie, constants.SECRET)
         .then(decodedToken => {
             req.user = decodedToken;
             res.locals.user = decodedToken;
@@ -22,9 +22,9 @@ exports.authenticate = function(req, res, next) {
         })
 }
 
-exports.authorize = function(req, res, next) {
-    if (!req.user) {
-        return res.status(401).redirect('/login');
-    }
-    next();
-}
+// exports.authorize = function(req, res, next) {
+//     if (!req.user) {
+//         return res.status(401).redirect('/login');
+//     }
+//     next();
+// }

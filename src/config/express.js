@@ -7,6 +7,9 @@ const cookieParser = require('cookie-parser');
 // Init application
 const app = express();
 
+app.use(cookieParser());
+
+
 //Set up req body parser
 app.use(express.urlencoded({extended: true}));
 
@@ -24,6 +27,6 @@ app.use(express.static(path.normalize(path.join(__dirname, '../public'))));
 //Set up routes
 app.use(routes);
 
-app.use(cookieParser());
+
 
 module.exports = app;
