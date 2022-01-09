@@ -2,7 +2,7 @@ const constants = require('../utils/constants');
 const jwt = require('jsonwebtoken');
 const jwtVerify = require('../utils/jwtUtils').jwtVerify;
 
-exports.auth = function(req, res, next) {
+exports.authenticate = function(req, res, next) {
     // Look for Json Web Token
     let cookie = req.cookies[constants.TOKEN_COOKIE_NAME];
 
@@ -20,4 +20,11 @@ exports.auth = function(req, res, next) {
         .catch(err => {
             return res.status(401).redirect('/login');
         })
+}
+
+exports.authorize = function(req, res, next) {
+    if (!req.user) {
+        return res.status(401).redirect('/login');
+    }
+    next();
 }
