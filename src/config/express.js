@@ -2,7 +2,7 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const routes = require('./routes');
 const path = require('path');
-
+const cookieParser = require('cookie-parser');
 
 // Init application
 const app = express();
@@ -24,8 +24,6 @@ app.use(express.static(path.normalize(path.join(__dirname, '../public'))));
 //Set up routes
 app.use(routes);
 
-
-
-
+app.use(cookieParser());
 
 module.exports = app;
