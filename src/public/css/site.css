@@ -35,3 +35,50 @@ html, body {
     font-size: small;
     width: 30%;
 }
+
+.nav-border {
+    border-bottom: #2e8b57 solid 2px;
+}
+
+.center {
+    text-align: center;
+}
+
+.logo-text {
+    color: white;
+    font-size: 39px;
+}
+
+.logo {
+    color: #2e8b57;
+    padding: 8px;
+    padding-left: 14px;
+    padding-right: 14px;
+    border: #2e8b57 solid 2px;
+    border-radius: 40px;
+    margin-left: 2rem;
+}
+
+.logo:hover {
+    background-color: #2e8b57;
+    color: white;
+    cursor: pointer;
+}
+
+.add-button {
+    color: white;
+    background-color: transparent;
+    background-color: #2e8b57;
+    border: none;
+}
+
+.add-button:hover {
+    color: white;
+    background-color: #2e8b57;
+    border: none;
+    filter: brightness(1.23);
+}
+
+.navbar-list {
+    margin-right: auto;
+}
