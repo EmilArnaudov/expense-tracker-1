@@ -2,9 +2,13 @@ const User = require('../models/User');
 const jwtSign = require('../utils/jwtUtils').jwtSign
 const constants = require('../utils/constants');
 
-exports.register = async function (username, password) {
+exports.register = async function (username, password, repass, balance) {
+    if (password !== repass) {
+        return 'Passwords must match.'
+    }
+
     try {
-        let user =  new User({username, password});
+        let user =  new User({username, password, balance});
         await user.save()
         return;
     } catch (err) {
