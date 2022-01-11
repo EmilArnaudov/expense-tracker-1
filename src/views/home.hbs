@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+  <div class="container-fluid d-flex nav-border shadow-5-strong justify-content">
+    <a class="navbar-brand" href="/">
+        <span class="logo-text">
+                <i class="fas fa-dollar-sign logo"></i>
+        </span>
+        
+    </a>
+    {{#with user}}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-list">
+        <li>
+            <p class="display-6">Hello, {{username}}</p>
+        </li>
+        <li>
+            <p class="display-6">Balance: {{balance}}</p>
+        </li>
+        <li>
+            <a href="" type="button" class="btn btn-info add-button">Add Transaction</a>
+        </li>
+      </ul>
+    </div>
+    {{/with}}
+  </div>
+</nav>
+
+<script src="/js/home.js"></script>
