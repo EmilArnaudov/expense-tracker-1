@@ -16,7 +16,8 @@ const userSchema = new mongoose.Schema({
         validate: [/^[a-zA-Z0-9_]+$/, 'Password can contain only alphanumeric characters ([A-Z] [a-z] [0-9] and \'_\')'],
         minlength: [8, 'Password must be between 8 - 30 characters.'],
         maxlength: [30, 'Password must be between 8 - 30 characters.']
-    }
+    },
+    transactions: [],
 })
 
 userSchema.pre('save', function (next) {
@@ -31,6 +32,11 @@ userSchema.pre('save', function (next) {
 
 userSchema.method('validatePassword', function(password) {
     return bcrypt.compare(password, this.password);
+});
+
+userSchema.method('getUser', function(userId) {
+    return mongoose.findOne({_id: userId});
+
 });
 
 const User = mongoose.model('User', userSchema);
