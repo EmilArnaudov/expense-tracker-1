@@ -10,13 +10,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-list">
         <li>
-            <p class="display-6">Hello, {{username}}</p>
+            <p class="display-6">{{username}}</p>
         </li>
         <li>
-            <p class="display-6">Balance: {{balance}}</p>
+            <p class="display-6">{{balance}}</p>
         </li>
         <li>
-            <a href="" type="button" class="btn btn-info add-button">Add Transaction</a>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Transaction</button>
         </li>
       </ul>
     </div>
@@ -24,4 +24,53 @@
   </div>
 </nav>
 
-<script src="/js/home.js"></script>
+<!-- Modal -->
+<div class="modal fade in" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Transaction</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+              <form class="justify-content" id="transaction-form" action="" method="post">
+                <label for="transaction-type">Select type</label>
+                <select class="form-select" aria-label="Select type" name="transaction-type" aria-placeholder="Select a transaction type..">
+                  <option value="withdraw">Withdraw</option>
+                  <option value="deposit">Deposit</option>
+                </select>
+
+                <label for="transaction-category">Select category</label>
+                <select class="form-select" aria-label="Select type" name="transaction-category">
+                  <option value="housing">Housing</option>
+                  <option value="transportation">Transportation</option>
+                  <option value="food">Food</option>
+                  <option value="utilities">Utilities</option>
+                  <option value="clothing">Clothing</option>
+                  <option value="healthcare">Healthcare</option>
+                  <option value="insurance">Insurance</option>
+                  <option value="household-items">Household Items</option>
+                  <option value="personal">Personal</option>
+                  <option value="debt">Debt</option>
+                  <option value="savings">Savings</option>
+                  <option value="education">Education</option>
+                  <option value="gifts">Gifts</option>
+                  <option value="entertainment">Entertainment</option>
+                </select>
+
+                <label for="transaction-date">Select date</label>
+                <input class="form-select" type="date" name="transaction-date" value=""> 
+                <br>
+                <br>
+                <button id="saveButton" type="submit" class="btn btn-success">Save</button>
+            </form>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/utils/popUpForm.js"></script>
