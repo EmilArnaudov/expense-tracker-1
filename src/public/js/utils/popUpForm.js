@@ -1,7 +1,18 @@
-// const form = document.querySelector('#transaction-form');
+const categorySelectElement = document.querySelector('#category-select');
+categorySelectElement.addEventListener('change', loadExpenseMenu)
 
-// form.addEventListener('change', test)
+function loadExpenseMenu(e) {
+    const form = document.querySelector('#transaction-form')
+    refreshExpenseMenu(form);
 
-// function test() {
-//     form.querySelectorAll('select').forEach(x => x.disabled = true);
-// }
+    let selectedCategory = e.currentTarget.value;
+    let neededSubcategory = document.querySelector(`#transaction-category-${selectedCategory}`);
+    let label = document.querySelector('#expense-label');
+    neededSubcategory.selected = 'true';
+    [neededSubcategory, label].forEach(x => x.classList.remove('hidden'));
+}
+
+
+function refreshExpenseMenu(form) {
+    form.querySelectorAll('.expense').forEach(x => x.classList.add('hidden'))
+}

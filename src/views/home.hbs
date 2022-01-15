@@ -33,15 +33,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-              <form class="justify-content" id="transaction-form" action="" method="post">
+              <form class="text-center" id="transaction-form" action="" method="post">
                 <label for="transaction-type">Select type</label>
-                <select class="form-select" aria-label="Select type" name="transaction-type" aria-placeholder="Select a transaction type..">
+                <select id="transaction-type" class="form-select" aria-label="Select type" name="transaction-type">
                   <option value="withdraw">Withdraw</option>
                   <option value="deposit">Deposit</option>
                 </select>
 
                 <label for="transaction-category">Select category</label>
-                <select class="form-select" aria-label="Select type" name="transaction-category">
+                <select id="category-select" class="form-select" aria-label="Select category" name="transaction-category">
+                  <option value="" disabled selected >Please select a category...</option>
                   <option value="housing">Housing</option>
                   <option value="transportation">Transportation</option>
                   <option value="food">Food</option>
@@ -58,19 +59,130 @@
                   <option value="entertainment">Entertainment</option>
                 </select>
 
+                <label id="expense-label" for="transaction-expense" class="hidden" >Select expense</label>
+                <select id="transaction-category-housing" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-housing">
+                  <option value="mortgage">Mortgage</option>
+                  <option value="rent">Rent</option>
+                  <option value="household-repairs">Household Repairs</option>
+                  <option value="property-taxes">Property Taxes</option>
+                </select>
+
+                <select id="transaction-category-transportation" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-transportation">
+                  <option value="car-payment">Car Payment</option>
+                  <option value="car-warranty">Car Warranty</option>
+                  <option value="gas">Gas</option>
+                  <option value="maintenance">Maintenance</option>
+                  <option value="tyres">Tyres</option>
+                  <option value="parking-fees">Parking Fees/Tickets</option>
+                  <option value="repeairs">Repairs</option>
+                </select>
+
+                <select id="transaction-category-food" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-food">
+                  <option value="groceries">Groceries</option>
+                  <option value="restaurants">Restaurants</option>
+                  <option value="pet-food">Pet Food</option>
+                </select>
+
+                <select id="transaction-category-utilities" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-utilities">
+                  <option value="electricity">Electricity</option>
+                  <option value="water">Water</option>
+                  <option value="garbage">Garbage</option>
+                  <option value="garbage">Phones</option>
+                  <option value="garbage">Cable</option>
+                  <option value="garbage">Internet</option>
+                </select>
+
+                <select id="transaction-category-clothing" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-clothing">
+                  <option value="adult-clothing">Adults' Clothing</option>
+                  <option value="adult-shoes">Adults' Shoes</option>
+                  <option value="children-clothing">Children's Clothing</option>
+                  <option value="children-shoes">Children's Shoes</option>
+                </select>
+
+                <select id="transaction-category-healthcare" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-healthcare">
+                  <option value="primary-care">Primary Care</option>
+                  <option value="dental-care">Dental Care</option>
+                  <option value="specialty-care">Specialty Care (dermatologists, orthodontics, etc.)</option>
+                  <option value="urgent-care">Urgent Care</option>
+                  <option value="medications">Medications</option>
+                  <option value="medical-devices">Medical Devices</option>
+                </select>
+
+                <select id="transaction-category-insurance" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-insurance">
+                  <option value="health-insurance">Health Insurance</option>
+                  <option value="home-warranty">Home warranty / Protection Plan</option>
+                  <option value="auto-insurance">Auto Insurance</option>
+                  <option value="life-insurance">Life Insurance</option>
+                  <option value="disability-insurance">Disability Insurance</option>
+                </select>
+
+                <select id="transaction-category-household-items" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-household-items">
+                  <option value="toiletries">Toiletries</option>
+                  <option value="laundry-detergent">Laundry Detergent</option>
+                  <option value="dishwasher-detergent">Dishwasher Detegent</option>
+                  <option value="cleaning-supplies">Cleaning Supplies</option>
+                  <option value="tools">Tools</option>
+                </select>
+
+                <select id="transaction-category-personal" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-personal">
+                  <option value="gym-memberships">Gym Memberships</option>
+                  <option value="haircuts">Haircuts</option>
+                  <option value="salon-services">Salon Services</option>
+                  <option value="cosmetics">Cosmetics</option>
+                  <option value="babysitter">Babysitter</option>
+                </select>
+
+                <select id="transaction-category-debt" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-debt">
+                  <option value="personal-loans">Personal Loans</option>
+                  <option value="student-loans">Student Loans</option>
+                  <option value="credit-cards">Credit Cards</option>
+                </select>
+
+                <select id="transaction-category-savings" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-savings">
+                  <option value="emergency-fund">Emergency Fund</option>
+                  <option value="investments">Investments</option>
+                  <option value="big-purchases">Big Purchases</option>
+                  <option value="other-savings">Other Savings</option>
+                </select>
+
+                <select id="transaction-category-education" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-education">
+                  <option value="children-university">Children's University</option>
+                  <option value="your-university">Your University</option>
+                  <option value="school-supplies">School Supplies</option>
+                  <option value="Books">Books</option>
+                  <option value="side-courses">Side Courses</option>
+                </select>
+
+                <select id="transaction-category-gifts" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-gifts">
+                  <option value="birthday">Birthday</option>
+                  <option value="anniversary">Anniversary</option>
+                  <option value="wedding">Wedding</option>
+                  <option value="christmas">Christmas</option>
+                  <option value="special-occasion">Special Occasion</option>
+                  <option value="charities">Charities</option>
+                </select>
+
+                <select id="transaction-category-entertainment" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-entertainment">
+                  <option value="alcohol">Alcohol / Bars</option>
+                  <option value="games">Games</option>
+                  <option value="movies">Movies</option>
+                  <option value="vacations">Vacations</option>
+                  <option value="concerts">Concerts</option>
+                  <option value="subscriptions">Subscriptions (Amazon, Netflix, etc.)</option>
+                </select>
+
                 <label for="transaction-date">Select date</label>
-                <input class="form-select" type="date" name="transaction-date" value=""> 
+                <input class="form-select" type="date" name="transaction-date" value="">
+                <label for="transaction-amount">Enter amount</label>
+                <input id="balance" class="form-control" type="text" name="transaction-amount" value="" placeholder="Enter amount"> 
                 <br>
                 <br>
                 <button id="saveButton" type="submit" class="btn btn-success">Save</button>
             </form>
-      </div>
-      <div class="modal-footer">
-
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>
 </div>
 
 <script src="/js/utils/popUpForm.js"></script>
+<script src="/js/utils/balanceFieldCorrector.js"></script>
