@@ -35,15 +35,18 @@
   </div>
   <div class="col-lg-3"></div>
 </div>
-
-<div class="card" style="width: 36rem;">
+<div class="container">
+  <div class="card" style="width: 36rem;">
   <div class="card-body">
-    <h5 class="card-title">Your Budget</h5>
+    <h5 class="card-title budget-title">Your Budget</h5>
+    <p class="budget-values">$130 <small class="text-muted text-size-sm">/ $1300</small></p>
     <div class="progress">
-      <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+      <div class="progress-bar bg-success" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
   </div>
 </div>
+</div>
+
 
 
 <!-- Modal -->
@@ -212,5 +215,6 @@
 </div>
 
 
-<script src="/js/utils/popUpForm.js"></script>
+<script src="/js/transaction-form/popUpForm.js"></script>
 <script src="/js/utils/balanceFieldCorrector.js"></script>
+<script src="/js/utils/progressBarUpdater.js"></script>
