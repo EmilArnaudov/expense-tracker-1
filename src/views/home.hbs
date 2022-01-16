@@ -16,7 +16,7 @@
             <p class="display-6">{{balance}}</p>
         </li>
         <li>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Transaction</button>
+            <button id="addTransactionButton" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Transaction</button>
         </li>
       </ul>
     </div>
@@ -177,7 +177,9 @@
                 <input id="balance" class="form-control" type="text" name="transaction-amount" value="" placeholder="Enter amount"> 
                 <br>
                 {{#if error}}
-                  {{error}}
+                  <div id="errorMessage" class="alert alert-danger" role="alert">
+                    Please fill out all the fields.
+                  </div>
                 {{/if}}
                 <br>
                 <button id="saveButton" type="submit" class="btn btn-success">Save</button>
@@ -186,6 +188,7 @@
     </div>
   </div>
 </div>
+
 
 <script src="/js/utils/popUpForm.js"></script>
 <script src="/js/utils/balanceFieldCorrector.js"></script>
