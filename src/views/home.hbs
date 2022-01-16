@@ -176,6 +176,9 @@
                 <label for="transaction-amount">Enter amount</label>
                 <input id="balance" class="form-control" type="text" name="transaction-amount" value="" placeholder="Enter amount"> 
                 <br>
+                {{#if error}}
+                  {{error}}
+                {{/if}}
                 <br>
                 <button id="saveButton" type="submit" class="btn btn-success">Save</button>
             </form>

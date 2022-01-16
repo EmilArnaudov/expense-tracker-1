@@ -1,11 +1,21 @@
 const mongoose = require('mongoose');
+const User = require('./User');
 
 const transactionSchema = new mongoose.Schema({
+    _ownerId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
     type: {
         type: String,
         required: true,
     },
     category: {
+        type: String,
+        required: true,
+    },
+    expense: {
         type: String,
         required: true,
     },
@@ -15,7 +25,7 @@ const transactionSchema = new mongoose.Schema({
         min: [0.01, 'Sorry you cannot send empty transactions'],
     },
     date: {
-        type: Date,
+        type: String,
         required: true,
     },
 })
