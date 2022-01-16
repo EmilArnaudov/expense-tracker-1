@@ -5,8 +5,8 @@ exports.addTransaction = async function (user, type, category, expense, date, am
     let transaction = new Transaction({_ownerId: user, type, category, expense, date, amount});
 
     try {
-        let result = await transaction.save();
-        console.log(`Successfully saved: ${result}`);    
+        await transaction.save();
+        return;
     } catch (error) {
         return error.message;
     }
