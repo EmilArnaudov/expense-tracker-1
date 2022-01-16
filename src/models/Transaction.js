@@ -6,6 +6,11 @@ const transactionSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    _budgetId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Budget',
+        required: true,
+    },
     type: {
         type: String,
         required: true,
