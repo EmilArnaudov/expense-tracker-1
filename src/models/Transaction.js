@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const User = require('./User');
 
 const transactionSchema = new mongoose.Schema({
     _ownerId: {
