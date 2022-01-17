@@ -5,8 +5,13 @@ const addTransactionButton = document.querySelector('#addTransactionButton');
 const budgetErrorDiv = document.querySelector('#budgetErrorMessage');
 const budgetButton = document.querySelector('#addBudgetButton');
 
-transactionErrorHandler(errorDiv, addTransactionButton);
-budgetErrorHandler(budgetErrorDiv, budgetButton);
+if (errorDiv) {
+    transactionErrorHandler(errorDiv, addTransactionButton);
+} else if (budgetErrorDiv) {
+    budgetErrorHandler(budgetErrorDiv, budgetButton);
+}
+
+
 
 function loadExpenseMenu(e) {
     const form = document.querySelector('#transaction-form')

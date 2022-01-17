@@ -1,6 +1,6 @@
 exports.splitBudgetData = function(body) {
-    let category = body['budget-category'];
+    let title = body['budget-title'];
     let maxValue = body['budget-maxvalue'];
 
-    return {category, maxValue};
+    return {title, maxValue};
 }

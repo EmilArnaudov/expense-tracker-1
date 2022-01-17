@@ -3,7 +3,6 @@ const { engine } = require('express-handlebars');
 const routes = require('./routes');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const { requestType } = require('../middlewares/requestType');
 
 // Init application
 const app = express();

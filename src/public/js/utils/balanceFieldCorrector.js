@@ -1,10 +1,11 @@
-let balanceField = document.querySelector('#balance');
+let balanceField = document.getElementById('balance');
 balanceField.addEventListener('input', correctField);
 
 
-function correctField() {
-    let balanceField = document.querySelector('#balance');
+function correctField(e) {
+    let balanceField = e.currentTarget;
     let content = balanceField.value.trim();
+    console.log(content);
 
     if (isNaN(Number(content))) {
         let corrected  = Array.from(content)

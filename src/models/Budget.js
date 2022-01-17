@@ -6,9 +6,8 @@ const budgetSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    category: {
+    title: {
         type: String,
-        enum: ['housing', 'transportation', 'food', 'utilities', 'clothing', 'healthcare', 'insurance', 'household-items', 'personal', 'debt', 'savings', 'education', 'gifts', 'entertainment'],
         required: true,
     },
 
@@ -27,26 +26,10 @@ const budgetSchema = new mongoose.Schema({
     percentageFilled: {
         type: Number,
     },
-
-    title: {
-        type:String
-    }
 })
 
 budgetSchema.pre('save', function() {
     this.percentageFilled = Math.round(this.currentValue / this.maxValue) * 100;
-})
-
-budgetSchema.pre('save', function() {
-    let title;
-    if (this.category === 'household-items') {
-        title = 'Household Items';
-    } else {
-        title = this.category[0].toUpperCase() + this.category.slice(1);
-    }
-
-    this.title = title;
-    
 })
 
 const Budget = mongoose.model('Budget', budgetSchema);
