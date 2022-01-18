@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     balance: {
         type: Number,
         required: true,
-        min: [0.01, 'Balance cannot be set to negative.']
+        min: [0, 'Balance cannot be set to negative.']
     },
     transactions: [],
 })
@@ -33,6 +33,11 @@ userSchema.pre('save', function (next) {
             next();
         })
     
+});
+
+userSchema.pre('save', function (next) {
+    this.balance = Math.round(this.balance);
+    next();
 });
 
 userSchema.method('validatePassword', function(password) {

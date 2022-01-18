@@ -13,9 +13,6 @@ html, body {
     font-size: 130%;
 }
 
-.bright:hover {
-    filter: brightness(1.23);
-}
 
 .errorMessage {
     color: red;

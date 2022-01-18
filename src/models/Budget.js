@@ -20,7 +20,6 @@ const budgetSchema = new mongoose.Schema({
     currentValue: {
         type: Number,
         min: 0,
-        max: 0,
     },
 
     percentageFilled: {
@@ -28,9 +27,15 @@ const budgetSchema = new mongoose.Schema({
     },
 })
 
-budgetSchema.pre('save', function() {
+budgetSchema.pre('save', function(next) {
     this.percentageFilled = Math.round(this.currentValue / this.maxValue) * 100;
+    next();
 })
+
+budgetSchema.pre('save', function (next) {
+    this.balance = Math.round(this.balance);
+    next();
+});
 
 const Budget = mongoose.model('Budget', budgetSchema);
 

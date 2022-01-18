@@ -16,7 +16,7 @@
             <p class="display-6">{{balance}}</p>
         </li>
         <li>
-          <button id="addBudgetButton" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#budgetModal">Create a Budget</button>
+          <a href="/budget/create" id="addBudgetButton" type="button" class="btn btn-secondary">Create a Budget</a>
         </li>
         <li>
             <a href="/transaction/add" id="addTransactionButton" type="button" class="btn btn-success">Add Transaction</a>
@@ -58,6 +58,4 @@
   </div>
 </div>
 
-<script src="/js/transaction-form/popUpForm.js"></script>
-<script src="/js/utils/balanceFieldCorrector.js"></script>
 <script src="/js/utils/progressBarUpdater.js"></script>
