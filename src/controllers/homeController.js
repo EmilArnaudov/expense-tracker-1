@@ -10,7 +10,6 @@ router.get('/', async (req, res) => {
         .then(async (user) => {
             user.balance = formatter.format(user.balance)
             let budgets = await Budget.find({_ownerId: user._id}).lean();
-            console.log(budgets);
             res.render('home', {user, budgets})
             
         });

@@ -5,7 +5,6 @@ const Budget = require('../models/Budget');
 
 router.get('/add', async (req, res) => {
     let budgets = await Budget.find({_ownerId: req.user._id}).lean();
-    console.log(budgets);
     res.render('addTransaction', {budgets});
 })
 

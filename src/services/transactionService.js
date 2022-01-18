@@ -24,7 +24,10 @@ async function updateUserData(budgetId, userId, amount) {
         {_id: budgetId},
         {$inc: {'currentValue': amount}}
         );
-
+    
+    let budget = await Budget.findOne({_id: budgetId});
+    budget.percentageFilled = Math.round(budget.currentValue / budget.maxValue * 100);
+    await budget.save()
     
     await User.findOneAndUpdate(
         {_id: userId},
