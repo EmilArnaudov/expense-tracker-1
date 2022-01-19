@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const Balance = require('../models/Balance');
 const jwtSign = require('../utils/jwtUtils').jwtSign
 const constants = require('../utils/constants');
 
@@ -8,8 +9,10 @@ exports.register = async function (username, password, repass, balance) {
     }
 
     try {
-        let user =  new User({username, password, balance});
-        await user.save()
+        let user =  new User({username, password});
+        let userModel = await user.save();
+        let balanceModel = new Balance({_ownerId: userModel._id, balance: balance})
+        await balanceModel.save();
         return;
     } catch (err) {
         let errorMessage = err.message.split('failed: password: ' || 'password: ')[1];
@@ -30,8 +33,6 @@ exports.login =  function(username, password) {
     return User.findOne({username})
         .then(user => Promise.all([user.validatePassword(password), user]))
         .then(([isValid, user]) => {
-            console.log(isValid);
-            console.log(user);
             if (isValid) {
                 return user;
             } else {

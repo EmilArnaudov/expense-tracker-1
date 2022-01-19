@@ -8,11 +8,11 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
     let {username, password, repeatPassword, balance } = req.body;
     balance = Number(balance)
-    console.log(username, password, repeatPassword, balance);
+
     let data = await register(username, password, repeatPassword, balance)
 
     if(!data) {
-        res.redirect('/login')
+        res.redirect('/')
         return;
     }
 

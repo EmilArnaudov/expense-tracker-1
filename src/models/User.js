@@ -17,11 +17,6 @@ const userSchema = new mongoose.Schema({
         minlength: [8, 'Password must be between 8 - 30 characters.'],
         maxlength: [30, 'Password must be between 8 - 30 characters.']
     },
-    balance: {
-        type: Number,
-        required: true,
-        min: [0, 'Balance cannot be set to negative.']
-    },
     transactions: [],
 })
 

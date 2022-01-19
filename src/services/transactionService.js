@@ -1,14 +1,14 @@
 const Transaction = require('../models/Transaction');
 const Budget = require('../models/Budget');
-const User = require('../models/User');
+const Balance = require('../models/Balance');
 const mongoose = require('mongoose');
 
 exports.addTransaction = async function (user, budget, type, category, expense, date, amount) {
     let transaction = new Transaction({_ownerId: user, _budgetId: budget, type, category, expense, date, amount});
 
     try {
-        await transaction.save();
         await updateUserData(budget, user, amount);
+        await transaction.save();
         return;
 
     } catch (error) {
@@ -20,6 +20,16 @@ exports.addTransaction = async function (user, budget, type, category, expense, 
 
 async function updateUserData(budgetId, userId, amount) {
 
+    let balance = await Balance.findOne({_ownerId: userId});
+
+    if (!balance.balance - amount > 0 ) {
+        throw new Error('You do not have enough money for this transaction.');
+    }
+
+    balance.balance -= amount;
+    await balance.save();
+
+
     await Budget.findOneAndUpdate(
         {_id: budgetId},
         {$inc: {'currentValue': amount}}
@@ -29,9 +39,8 @@ async function updateUserData(budgetId, userId, amount) {
     budget.percentageFilled = Math.round(budget.currentValue / budget.maxValue * 100);
     await budget.save()
     
-    await User.findOneAndUpdate(
-        {_id: userId},
-        {$inc: {'balance': -amount}}
-        );
+
+
+
     
 }
