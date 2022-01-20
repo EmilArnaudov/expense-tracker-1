@@ -8,7 +8,8 @@ exports.addTransaction = async function (user, budget, type, category, expense, 
 
     try {
         await updateUserData(budget, user, amount);
-        await transaction.save();
+        let finished_transaction = await insertBudgetNameInTransaction(budget, transaction);
+        await finished_transaction.save();
         return;
 
     } catch (error) {
@@ -38,9 +39,11 @@ async function updateUserData(budgetId, userId, amount) {
     let budget = await Budget.findOne({_id: budgetId});
     budget.percentageFilled = Math.round(budget.currentValue / budget.maxValue * 100);
     await budget.save()
-    
+}
 
 
-
-    
+async function insertBudgetNameInTransaction(budgetId, transaction) {
+    let budget = await Budget.findOne({_id: budgetId});
+    transaction.budgetName = budget.title;
+    return transaction;
 }

@@ -1,0 +1,20 @@
+<table class="table table-sm table-striped bg-bright">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Type</th>
+            <th scope="col">Budget</th>
+            <th scope="col">Category</th>
+            <th scope="col">Expense</th>
+            <th scope="col">Amount</th>
+        </tr>
+    </thead>
+  <tbody>
+      {{#each allTransactions}}
+        {{> transactionTableRow}}
+      {{/each}}
+  </tbody>
+</table>
+
+ 

@@ -12,6 +12,11 @@ const transactionSchema = new mongoose.Schema({
         ref: 'Budget',
         required: true,
     },
+    budgetName: {
+        type: String,
+        required: true,
+    },
+    
     type: {
         type: String,
         required: true,

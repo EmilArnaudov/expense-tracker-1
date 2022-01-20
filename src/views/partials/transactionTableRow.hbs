@@ -1,0 +1,18 @@
+<tr>
+    <th scope="row">1</th>
+    <td>{{date}}</td>
+    <td>{{type}}</td>
+    <td>{{budgetName}}</td>
+    <td>{{category}}</td>
+    <td>{{expense}}</td>
+    <td>${{amount}}</td>
+    <td>
+        
+        <a href="/transaction/edit/{{_id}}">
+            <i class="fas fa-edit edit-btn"></i>
+        </a>
+        <a href="/transaction/delete/{{_id}}">
+            <i class="fas fa-times delete-btn"></i>
+        </a>
+    </td>
+</tr>

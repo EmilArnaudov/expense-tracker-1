@@ -2,10 +2,16 @@ const router = require('express').Router();
 const { splitTransactionData }= require('../utils/transactionUtils');
 const { addTransaction } = require('../services/transactionService');
 const Budget = require('../models/Budget');
+const Transaction = require('../models/Transaction');
 
 router.get('/add', async (req, res) => {
     let budgets = await Budget.find({_ownerId: req.user._id}).lean();
     res.render('addTransaction', {budgets});
+})
+
+router.get('/history', async (req, res) => {
+    let allTransactions = await Transaction.find({_ownerId: req.user._id}).lean();
+    res.render('transactionHistory', { allTransactions });
 })
 
 router.post('/add', async (req, res) => {
