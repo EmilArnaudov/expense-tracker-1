@@ -19,6 +19,11 @@ exports.addTransaction = async function (user, budget, type, category, expense, 
     
 }
 
+
+exports.editTransaction = async function(transactionId) {
+    
+}
+
 async function updateUserData(budgetId, userId, amount) {
 
     let balance = await Balance.findOne({_ownerId: userId});
