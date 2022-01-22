@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
-  <div class="container-fluid d-flex nav-border shadow-5-strong justify-content">
+{{!-- <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+  <div class="container-fluid d-flex nav-border shadow-5-strong justify-content-between">
     <a class="navbar-brand" href="/">
         <span class="logo-text">
                 <i class="fas fa-dollar-sign logo"></i>
@@ -8,18 +8,16 @@
     </a>
     {{#with user}}
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-list">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-list d-flex justify-content-between">
         <li>
             <p class="display-6">{{username}}</p>
-        </li>
-        <li>
             <p class="display-6">{{balance}}</p>
         </li>
         <li>
           <a href="/transaction/history" id="showHistoryButton" type="button" class="btn btn-info">Show History</a>
         </li>
         <li>
-          <a href="/budget/create" id="addBudgetButton" type="button" class="btn btn-secondary">Create a Budget</a>
+          <a href="/budget/create" id="addBudgetButton" type="button" class="btn btn-warning">Create a Budget</a>
         </li>
         <li>
             <a href="/transaction/add" id="addTransactionButton" type="button" class="btn btn-success">Add Transaction</a>
@@ -28,9 +26,12 @@
     </div>
     {{/with}}
   </div>
-</nav>
+</nav> --}}
 
-<div class="row">
+
+
+<div class="container center">
+  <div class="row">
   <div class="col-lg-3"></div>
     <div class="col-lg-6 text-center header-color">
         <h1>Your Budgets</h1>
@@ -38,27 +39,11 @@
   </div>
   <div class="col-lg-3"></div>
 </div>
-<div class="container">
   {{#each budgets}}
     {{> budgetCard}}
   {{/each}}
 </div>
 
 
-
-<!-- Modal -->
-<div class="modal fade in" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New Transaction</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-      </div>
-    </div>
-  </div>
-</div>
 
 <script src="/js/utils/progressBarUpdater.js"></script>

@@ -10,6 +10,33 @@
     <title>Expense tracker</title>
 </head>
 <body><!-- Navbar -->
+    {{!-- {{#with user}}
+    <ul class="nav justify-content-end">
+    <li class="nav-item">
+    <p class="display-7">{{username}}</p>
+    </li>
+    <li>
+    <p class="display-7">{{balance}}</p>
+    </li>
+    <li class="nav-item">
+    <a href="/transaction/history" id="showHistoryButton">Show History</a>
+    </li>
+    <li class="nav-item">
+    <a href="/budget/create" id="addBudgetButton">Create a Budget</a>
+    </li>
+    <li class="nav-item">
+    <a href="/transaction/add" id="addTransactionButton" >Add Transaction</a>
+    </li>
+    </ul>
+    {{/with}} --}}
+    {{#if user}}
+    <nav class="nav nav-pills nav-fill">
+        <a class="nav-item btn btn-secondary" href="/" id="">Budgets</a>
+        <a class="nav-item btn btn-secondary" href="/transaction/history" id="showHistoryButton">Show History</a>
+        <a class="nav-item btn btn-secondary" href="/budget/create" id="addBudgetButton">Create a Budget</a>
+        <a class="nav-item btn btn-success nav-btn" href="/transaction/add" id="addTransactionButton" >Add Transaction</a>
+    </nav>
+    {{/if}}
     <div class="container">
         {{{body}}}
     </div>
