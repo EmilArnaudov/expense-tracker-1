@@ -20,8 +20,33 @@ exports.addTransaction = async function (user, budget, type, category, expense, 
 }
 
 
-exports.editTransaction = async function(transactionId) {
-    
+exports.editTransaction = async function(transaction, userId, type, budget, expense, category, amount) {
+    try {
+        if (Number(amount) === 0) {
+            throw new Error('You cannot send empty transactions.');
+        }
+
+        await reverseUserData(transaction._budgetId, userId, Number(transaction.amount), Number(amount));
+
+        transaction._budgetId = budget;
+        transaction.expense = expense;
+        transaction.category = category;
+        transaction.amount = amount;
+
+        updateUserData(transaction._budgetId, userId, amount);
+        await transaction.save();
+    } catch (error) {
+        console.log(error);
+        return error.message;
+    }
+}
+
+exports.deleteTransaction = async function (transactionId, userId) {
+    let transaction = await Transaction.findById(transactionId).lean();
+    await reverseUserData(transaction._budgetId, userId, Number(transaction.amount), 0);
+    await Transaction.findByIdAndDelete(transactionId);
+
+
 }
 
 async function updateUserData(budgetId, userId, amount) {
@@ -39,6 +64,28 @@ async function updateUserData(budgetId, userId, amount) {
     await Budget.findOneAndUpdate(
         {_id: budgetId},
         {$inc: {'currentValue': amount}}
+        );
+    
+    let budget = await Budget.findOne({_id: budgetId});
+    budget.percentageFilled = Math.round(budget.currentValue / budget.maxValue * 100);
+    await budget.save()
+}
+
+async function reverseUserData(budgetId, userId, amount, newAmount) {
+
+    let balance = await Balance.findOne({_ownerId: userId});
+    console.log(typeof balance.balance , typeof amount, typeof newAmount);
+    if ((balance.balance + amount) - newAmount < 0) {
+        throw new Error('You do not have enough money for this transaction.')
+    } 
+
+    balance.balance += amount;
+    await balance.save();
+
+
+    await Budget.findOneAndUpdate(
+        {_id: budgetId},
+        {$inc: {'currentValue': -amount}}
         );
     
     let budget = await Budget.findOne({_id: budgetId});

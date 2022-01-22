@@ -18,21 +18,17 @@
                         <option value="withdraw">Withdraw</option>
 
                     </select>
-
+                    {{#with transaction}}
                     <label for="transaction-budget">Select budget</label>
-                    <select id="transaction-budget" class="form-select" name="transaction-budget">
-                        {{#if budgets}}
+                    <select id="transaction-budget" class="form-select" name="transaction-budget" data-budget="{{budgetName}}">
+                    {{/with}}
                             {{#each budgets}}
                                 <option value="{{_id}}">{{title}}</option>
                             {{/each}}
-                        {{else}}
-                            <option value="" disabled selected> You need to have at least 1 budget ..</option>
-                        {{/if}}
                     </select>
-
+                    {{#with transaction}}
                     <label for="transaction-category">Select category</label>
-                    <select id="category-select" class="form-select" aria-label="Select category" name="transaction-category" value="{{category}}">
-                        <option value="" disabled selected >Please select a category...</option>
+                    <select id="category-select" class="form-select" aria-label="Select category" name="transaction-category" data-category="{{category}}">
                         <option value="housing">Housing</option>
                         <option value="transportation">Transportation</option>
                         <option value="food">Food</option>
@@ -57,7 +53,7 @@
                         <option value="property-taxes">Property Taxes</option>
                     </select>
 
-                    <select id="transaction-category-transportation" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-transportation">
+                    <select id="transaction-category-transportation" class="form-select hidden expense" aria-label="Select category" name="transaction-expense-transportation" data-expense="{{expense}}">
                         <option value="car-payment">Car Payment</option>
                         <option value="car-warranty">Car Warranty</option>
                         <option value="gas">Gas</option>
@@ -162,10 +158,11 @@
                     </select>
 
                     <label for="transaction-date">Select date</label>
-                    <input class="form-select" type="date" name="transaction-date" value="">
+                    <input class="form-select" type="date" name="transaction-date" value="{{date}}">
                     <label for="transaction-amount">Enter amount</label>
-                    <input id="balance" class="form-control" type="text" name="transaction-amount" value="" placeholder="Enter amount"> 
+                    <input id="balance" class="form-control" type="text" name="transaction-amount" value="{{amount}}" placeholder="Enter amount"> 
                     <br>
+                    {{/with}}
                     {{#if transactionError}}
                         <div id="errorMessage" class="alert alert-danger" role="alert">
                         Please fill out all the fields.
@@ -182,3 +179,4 @@
 
 <script src="/js/transaction-form/popUpForm.js"></script>
 <script src="/js/utils/balanceFieldCorrector.js"></script>
+<script src="/js/transaction-form/editForm.js"></script>

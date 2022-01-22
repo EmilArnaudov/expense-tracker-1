@@ -4,6 +4,7 @@ const routes = require('./routes');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 
+
 // Init application
 const app = express();
 
@@ -17,8 +18,10 @@ app.use(express.urlencoded({extended: true}));
 app.engine('hbs', engine({
     defaultLayout: 'main',
     extname: '.hbs',
+    helpers: require('./handlebars-helpers/handlebars-helpers'),
 }));
 app.set('view engine', 'hbs')
+
 
 
 //Set up static files
