@@ -34,8 +34,16 @@
         <a class="nav-item btn btn-secondary" href="/" id="">Budgets</a>
         <a class="nav-item btn btn-secondary" href="/transaction/history" id="showHistoryButton">Show History</a>
         <a class="nav-item btn btn-secondary" href="/budget/create" id="addBudgetButton">Create a Budget</a>
+        <a class="nav-item btn btn-secondary" href="/transaction/deposit" id="depositButton">Make a Deposit</a>
         <a class="nav-item btn btn-success nav-btn" href="/transaction/add" id="addTransactionButton" >Add Transaction</a>
     </nav>
+    <br>
+    {{#with user}}
+    <nav class="nav">
+        <span class="hello a" >Hello, {{username}}!</span>
+        <span class="hello">Your current balance is: {{balance}}</span>
+    </nav>
+    {{/with}}
     {{/if}}
     <div class="container">
         {{{body}}}

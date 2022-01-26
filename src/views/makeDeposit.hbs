@@ -1,0 +1,51 @@
+ <div class="row">
+        <br>
+        <br>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6 text-center header-color">
+            <h1>Make a Deposit</h1>
+        </div>
+    </div>
+    <div class="col-lg-3"></div>
+    <div class="row pt-3">
+        <div class="col-xs-3 col-md-4 col-lg-4 col-sm-4"></div>
+
+        <div class="col-xs-6 col-md-4 col-lg-4  col-sm-4 d-flex justify-content-center px-5 py-5 align-middle rounded bright">
+            <form class="text-center glow-purple" id="budget-form" action="" method="post">
+            <label for="budget-maxvalue">Deposit Category</label>
+            <input id="budget-maxvalue" class="form-control" placeholder="Enter your budget name.." name="budget-title" value="">
+
+            <label for="budget-maxvalue">Deposit Amount</label>
+            <input id="budget-maxvalue" type="text" class="form-control" placeholder="Enter deposit amount.." name="budget-maxvalue" value="">
+            </input>
+            <br>
+            <button id="createBudgetButton" type="submit" class="btn btn-primary">Create</button>
+
+            {{#if budgetError}}
+                <div id="budgetErrorMessage" class="alert alert-danger" role="alert">
+                Please fill out all the fields.
+                </div>
+            {{/if}}
+            </form>
+        </div>
+
+        <div class="col-xs-3 col-md-4 col-lg-4 col-sm-4"></div>
+    </div>
+
+    {{#if errorMessage}}
+    <div class="row ptb-4">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6 d-flex justify-content-center">
+            
+            <p class="errorMessage">{{errorMessage}}</p>
+            
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+    {{/if}}
+
+<script src="/js/transaction-form/popUpForm.js"></script>
+<script src="/js/utils/balanceFieldCorrector.js"></script>

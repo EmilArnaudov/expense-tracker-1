@@ -3,8 +3,12 @@ const { splitTransactionData }= require('../utils/transactionUtils');
 const { addTransaction } = require('../services/transactionService');
 const { editTransaction } = require('../services/transactionService');
 const { deleteTransaction } = require('../services/transactionService');
+const depositController = require('./depositController');
 const Budget = require('../models/Budget');
 const Transaction = require('../models/Transaction');
+
+router.use('/deposit', depositController);
+
 
 router.get('/edit/:id', async (req, res) => {
     let transactionId = req.params.id;
@@ -60,4 +64,6 @@ router.post('/add', async (req, res) => {
 
     res.redirect('/');
 })
+
+
 module.exports = router;
