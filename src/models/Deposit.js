@@ -8,11 +8,17 @@ const depositSchema = new mongoose.Schema({
     },
     category: {
         type: String,
+        enum: ['salary',
+            'dividends',
+            'capital-gains',
+            'interest',
+            'clothing',
+            'other'],
         required: true,
     },
     amount: {
         type: Number,
-        min: [1, 'Sorry, you cannot make empty deposits.']
+        min: [0.1, 'Sorry, you cannot make empty deposits.']
     }
 })
 
