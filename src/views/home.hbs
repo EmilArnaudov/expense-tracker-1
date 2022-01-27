@@ -28,6 +28,12 @@
   </div>
 </nav> --}}
 
+{{#with user}}
+<nav class="nav">
+    <span class="hello a" >Hello, {{username}}!</span>
+    <span class="hello">Your current balance is: {{balance}}</span>
+</nav>
+{{/with}}
 
 
 <div class="container center">

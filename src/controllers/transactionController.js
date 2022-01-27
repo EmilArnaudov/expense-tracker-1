@@ -3,6 +3,7 @@ const { splitTransactionData }= require('../utils/transactionUtils');
 const { addTransaction } = require('../services/transactionService');
 const { editTransaction } = require('../services/transactionService');
 const { deleteTransaction } = require('../services/transactionService');
+const { getTransactions } = require('../services/transactionService');
 const depositController = require('./depositController');
 const Budget = require('../models/Budget');
 const Transaction = require('../models/Transaction');
@@ -46,8 +47,8 @@ router.get('/add', async (req, res) => {
 })
 
 router.get('/history', async (req, res) => {
-    let allTransactions = await Transaction.find({_ownerId: req.user._id}).lean();
-    res.render('transactionHistory', { allTransactions });
+    let [thisMonthsTransactions, startingDate, endingDate] = await getTransactions(req.user._id);
+    res.render('transactionHistory', { allTransactions: thisMonthsTransactions, startingDate, endingDate});
 })
 
 

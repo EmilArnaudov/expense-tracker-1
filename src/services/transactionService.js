@@ -2,6 +2,8 @@ const Transaction = require('../models/Transaction');
 const Budget = require('../models/Budget');
 const Balance = require('../models/Balance');
 const mongoose = require('mongoose');
+const { getDaysInMonth } = require('../utils/transactionUtils');
+const { getFormattedDate } = require('../utils/transactionUtils');
 
 exports.addTransaction = async function (user, budget, type, category, expense, date, amount) {
     let transaction = new Transaction({_ownerId: user, _budgetId: budget, type, category, expense, date, amount});
@@ -98,4 +100,22 @@ async function insertBudgetNameInTransaction(budgetId, transaction) {
     let budget = await Budget.findOne({_id: budgetId});
     transaction.budgetName = budget.title;
     return transaction;
+}
+
+exports.getTransactions = async function(userId) {
+    let date = new Date();
+    let formattedDate = getFormattedDate(date);
+    
+    let [year, month] = formattedDate.split('-');
+    yearFunc = parseInt(year);
+    monthFunc = parseInt(month);
+
+    let lastDayOfMonth = getDaysInMonth(monthFunc, yearFunc);
+
+    let startingDate = `${year}-${month}-01`;
+    let endingDate = `${year}-${month}-${lastDayOfMonth}`;
+
+    let thisMonthsTransactions = await Transaction.find({_ownerId: userId, date: {$gt: startingDate, $lt: endingDate}}).lean();
+    
+    return [thisMonthsTransactions, startingDate, endingDate];
 }
