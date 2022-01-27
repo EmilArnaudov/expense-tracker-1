@@ -102,7 +102,7 @@ async function insertBudgetNameInTransaction(budgetId, transaction) {
     return transaction;
 }
 
-exports.getTransactions = async function(userId) {
+exports.getTransactionsNoDate = async function(userId) {
     let date = new Date();
     let formattedDate = getFormattedDate(date);
     
@@ -115,6 +115,13 @@ exports.getTransactions = async function(userId) {
     let startingDate = `${year}-${month}-01`;
     let endingDate = `${year}-${month}-${lastDayOfMonth}`;
 
+    let thisMonthsTransactions = await Transaction.find({_ownerId: userId, date: {$gt: startingDate, $lt: endingDate}}).lean();
+    
+    return [thisMonthsTransactions, startingDate, endingDate];
+}
+
+
+exports.getTransactionsWithDate = async function getTransactionsWithDate(userId, startingDate, endingDate) {
     let thisMonthsTransactions = await Transaction.find({_ownerId: userId, date: {$gt: startingDate, $lt: endingDate}}).lean();
     
     return [thisMonthsTransactions, startingDate, endingDate];

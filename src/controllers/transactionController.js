@@ -3,7 +3,8 @@ const { splitTransactionData }= require('../utils/transactionUtils');
 const { addTransaction } = require('../services/transactionService');
 const { editTransaction } = require('../services/transactionService');
 const { deleteTransaction } = require('../services/transactionService');
-const { getTransactions } = require('../services/transactionService');
+const { getTransactionsNoDate } = require('../services/transactionService');
+const { getTransactionsWithDate } = require('../services/transactionService');
 const depositController = require('./depositController');
 const Budget = require('../models/Budget');
 const Transaction = require('../models/Transaction');
@@ -47,10 +48,17 @@ router.get('/add', async (req, res) => {
 })
 
 router.get('/history', async (req, res) => {
-    let [thisMonthsTransactions, startingDate, endingDate] = await getTransactions(req.user._id);
+    let [thisMonthsTransactions, startingDate, endingDate] = await getTransactionsNoDate(req.user._id);
     res.render('transactionHistory', { allTransactions: thisMonthsTransactions, startingDate, endingDate});
 })
 
+router.post('/history', async (req, res) => {
+    let {startingDate, endingDate} = req.body;
+
+    let [allTransactions] = await getTransactionsWithDate(req.user._id, startingDate, endingDate);
+
+    res.render('transactionHistory', { allTransactions, startingDate, endingDate});
+})
 
 router.post('/add', async (req, res) => {
     let { type, budget, category, expense, date, amount } = splitTransactionData(req.body);
