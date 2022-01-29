@@ -1,55 +1,17 @@
-{{!-- <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
-  <div class="container-fluid d-flex nav-border shadow-5-strong justify-content-between">
-    <a class="navbar-brand" href="/">
-        <span class="logo-text">
-                <i class="fas fa-dollar-sign logo"></i>
-        </span>
-        
-    </a>
-    {{#with user}}
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-list d-flex justify-content-between">
-        <li>
-            <p class="display-6">{{username}}</p>
-            <p class="display-6">{{balance}}</p>
-        </li>
-        <li>
-          <a href="/transaction/history" id="showHistoryButton" type="button" class="btn btn-info">Show History</a>
-        </li>
-        <li>
-          <a href="/budget/create" id="addBudgetButton" type="button" class="btn btn-warning">Create a Budget</a>
-        </li>
-        <li>
-            <a href="/transaction/add" id="addTransactionButton" type="button" class="btn btn-success">Add Transaction</a>
-        </li>
-      </ul>
-    </div>
-    {{/with}}
-  </div>
-</nav> --}}
-
 {{#with user}}
 <nav class="nav">
-    <span class="hello a" >Hello, {{username}}!</span>
     <span class="hello">Your current balance is: {{balance}}</span>
+    <span id="user" class="hello a" >
+        <div class="dropdown">
+  <span  class=""><i class="fas fa-user-circle"></i> {{username}}!</span>
+  <div id="myDropdown" class="dropdown-content hidden">
+    <a href="/logout">Logout</a>
+  </div>
+    </div>
+    </span>
+
 </nav>
 {{/with}}
 
 
-<div class="container center">
-  <div class="row">
-  <div class="col-lg-3"></div>
-    <div class="col-lg-6 text-center header-color">
-        <h1>Your Budgets</h1>
-    </div>
-  </div>
-  <div class="col-lg-3"></div>
-</div>
-  {{#each budgets}}
-    {{> budgetCard}}
-  {{/each}}
-</div>
-
-
-
-<script src="/js/utils/progressBarUpdater.js"></script>
+<script src="/js/dropdownMenu.js"></script>
