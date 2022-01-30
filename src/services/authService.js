@@ -29,7 +29,7 @@ exports.register = async function (username, password, repass, balance) {
     }
 }
 
-exports.login =  function(username, password) {
+exports.login = function(username, password) {
     return User.findOne({username})
         .then(user => Promise.all([user.validatePassword(password), user]))
         .then(([isValid, user]) => {
@@ -43,7 +43,7 @@ exports.login =  function(username, password) {
 }
 
 
-exports.createToken = async function(user) {
+async function createToken(user) {
     let payload = {
         _id: user._id,
         username: user.username
@@ -51,3 +51,5 @@ exports.createToken = async function(user) {
 
     return jwtSign(payload, constants.SECRET)
 }
+
+exports.createToken = createToken;

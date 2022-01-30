@@ -2,7 +2,6 @@ const Deposit = require('../models/Deposit');
 const Balance = require('../models/Balance');
 
 exports.makeDeposit = async function(userId, category, amount) {
-    console.log('im here');
     let deposit = new Deposit({_ownerId: userId, category, amount: Number(amount)});
 
     try {

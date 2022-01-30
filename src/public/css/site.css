@@ -214,3 +214,13 @@ input[type=number]::-webkit-outer-spin-button {
   
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   .show {display:block;}
+
+  #myPieChart {
+      color: white;
+  }
+
+  .home-header {
+      color: white;
+      padding-top: 20px;
+      padding-bottom: 20px;
+  }

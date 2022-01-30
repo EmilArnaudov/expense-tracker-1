@@ -14,4 +14,48 @@
 {{/with}}
 
 
+{{#each keys}}
+    <div data-amount="{{amount}}" class="hidden data">{{key}}</div>
+{{/each}}
+
+<h1 class="text-center home-header">This month you've spent {{monthlyTotal}}</h1>
+
+<canvas id="myPieChart" height="20%" width="60%"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+
+<script>
+    let elements = Array.from(document.querySelectorAll('.data')).map(x => {return {label: x.innerHTML, amount: Number(x.dataset.amount)}});
+    elements.sort((a,b) => b.amount - a.amount);
+
+    let labels = elements.length > 0 ? elements.map(x => x.label) : ['You have no transactions this month']
+    let data = elements.length > 0 ? elements.map(x => x.amount) : [100];
+
+    var mychart = document.getElementById("myPieChart").getContext('2d');
+    let round_graph = new Chart(mychart, {
+        type: 'doughnut',
+        data: {
+        labels: labels,
+        datasets: [{
+            lable: 'Samples',
+            data: data,
+            backgroundColor: [ ' #DFFF00', '#00FF00', '#00FFFF', '#007FFF', '#0000FF', '#8F00FF', '#FF00FF', '#FF007F', '#ff2400', '#fc6a02', '#ffc30b', '#00FF7F'],
+            hoverBackgroundColor: [ ' #DFFF00', '#00FF00', '#00FFFF', '#007FFF', '#0000FF', '#8F00FF', '#FF00FF', '#FF007F', '#ff2400', '#fc6a02', '#ffc30b', '#00FF7F'],
+            hoverBorderColor: "",
+        }]
+        },
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'My Title',
+                }
+            }
+        }
+
+  })
+
+</script>
+
+
 <script src="/js/dropdownMenu.js"></script>

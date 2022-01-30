@@ -7,13 +7,8 @@ const Budget = require('../models/Budget');
 
 
 router.get('/all', async (req, res) => {
-    User.findById(req.user._id)
-        .lean()
-        .then(async (user) => {
-            let budgets = await Budget.find({_ownerId: user._id}).lean();
-            res.render('budgets', {user, budgets})
-            
-        });
+    let budgets = await Budget.find({_ownerId: req.user._id}).lean();
+    res.render('budgets', {budgets})
 })
 
 router.get('/create', (req, res) => {

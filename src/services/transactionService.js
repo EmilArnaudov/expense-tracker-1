@@ -102,7 +102,7 @@ async function insertBudgetNameInTransaction(budgetId, transaction) {
     return transaction;
 }
 
-exports.getTransactionsNoDate = async function(userId) {
+ async function getTransactionsNoDate(userId) {
     let date = new Date();
     let formattedDate = getFormattedDate(date);
     
@@ -120,9 +120,28 @@ exports.getTransactionsNoDate = async function(userId) {
     return [thisMonthsTransactions, startingDate, endingDate];
 }
 
+exports.getTransactionsNoDate = getTransactionsNoDate;
 
 exports.getTransactionsWithDate = async function getTransactionsWithDate(userId, startingDate, endingDate) {
     let thisMonthsTransactions = await Transaction.find({_ownerId: userId, date: {$gt: startingDate, $lt: endingDate}}).lean();
     
     return [thisMonthsTransactions, startingDate, endingDate];
+}
+
+exports.getTransactionSortedByCategory = async function(userId) {
+    let [transactions] = await getTransactionsNoDate(userId);
+    let transactionObject = {};
+    let monthlyTotal = 0;
+
+    transactions.forEach(tx => {
+        if (!transactionObject.hasOwnProperty(tx.category)) {
+            transactionObject[tx.category] = {transactions: [], totalAmount: 0};
+        }
+
+        transactionObject[tx.category].transactions.push(tx);
+        transactionObject[tx.category].totalAmount += tx.amount;
+        monthlyTotal += tx.amount;
+    })
+
+    return [transactionObject, monthlyTotal];
 }
