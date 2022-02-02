@@ -1,7 +1,6 @@
 const Transaction = require('../models/Transaction');
 const Budget = require('../models/Budget');
 const Balance = require('../models/Balance');
-const mongoose = require('mongoose');
 const { getDaysInMonth } = require('../utils/transactionUtils');
 const { getFormattedDate } = require('../utils/transactionUtils');
 

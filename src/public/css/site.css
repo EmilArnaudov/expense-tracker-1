@@ -224,3 +224,9 @@ input[type=number]::-webkit-outer-spin-button {
       padding-top: 20px;
       padding-bottom: 20px;
   }
+
+  .budget-card:hover {
+      cursor: pointer;
+      size: 20%;
+  }
+

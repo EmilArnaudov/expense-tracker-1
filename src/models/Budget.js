@@ -27,13 +27,6 @@ const budgetSchema = new mongoose.Schema({
     },
 })
 
-// budgetSchema.post('findOneAndUpdate', async function() {
-//     console.log('I AM FIXING PERCENTAGES .. BEEP BOOP..');
-//     let a = await this;
-//     console.log(a);
-//     this.percentageFilled = Math.round(this.currentValue / this.maxValue) * 100;
-// })
-
 budgetSchema.pre('save', function (next) {
     this.balance = Math.round(this.balance);
     next();
