@@ -12,11 +12,14 @@ router.post('/', async (req, res) => {
 
     let error = await makeDeposit(req.user._id, category, amount);
 
-    if (!error) {
-        res.redirect('/')
+    if (error) {
+        res.render('makeDeposit', {depositError: error})
+        return;
     };
 
-    res.render('makeDeposit', {depositError: error})
+    return res.redirect('/');
+
+    
 })
 
 module.exports = router;

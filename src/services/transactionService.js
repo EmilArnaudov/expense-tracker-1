@@ -8,7 +8,7 @@ exports.addTransaction = async function (user, budget, type, category, expense, 
     let transaction = new Transaction({_ownerId: user, _budgetId: budget, type, category, expense, date, amount});
 
     try {
-        await updateUserData(budget, user, amount);
+        await updateUserData(budget, user, Number(amount));
         let finished_transaction = await insertBudgetNameInTransaction(budget, transaction);
         await finished_transaction.save();
         return;
@@ -34,7 +34,7 @@ exports.editTransaction = async function(transaction, userId, type, budget, expe
         transaction.category = category;
         transaction.amount = amount;
 
-        updateUserData(transaction._budgetId, userId, amount);
+        await updateUserData(transaction._budgetId, userId, Number(amount));
         await transaction.save();
     } catch (error) {
         console.log(error);
@@ -61,13 +61,8 @@ async function updateUserData(budgetId, userId, amount) {
     balance.balance -= amount;
     await balance.save();
 
-
-    await Budget.findOneAndUpdate(
-        {_id: budgetId},
-        {$inc: {'currentValue': amount}}
-        );
-    
     let budget = await Budget.findOne({_id: budgetId});
+    budget.currentValue += amount;
     budget.percentageFilled = Math.round(budget.currentValue / budget.maxValue * 100);
     await budget.save()
 }
@@ -83,13 +78,8 @@ async function reverseUserData(budgetId, userId, amount, newAmount) {
     balance.balance += amount;
     await balance.save();
 
-
-    await Budget.findOneAndUpdate(
-        {_id: budgetId},
-        {$inc: {'currentValue': -amount}}
-        );
-    
     let budget = await Budget.findOne({_id: budgetId});
+    budget.currentValue -= amount;
     budget.percentageFilled = Math.round(budget.currentValue / budget.maxValue * 100);
     await budget.save()
 }
@@ -111,10 +101,14 @@ async function insertBudgetNameInTransaction(budgetId, transaction) {
 
     let lastDayOfMonth = getDaysInMonth(monthFunc, yearFunc);
 
-    let startingDate = `${year}-${month}-01`;
-    let endingDate = `${year}-${month}-${lastDayOfMonth}`;
+    let startingDate = `${year}-${month}-00`;
+    let endingDate = `${year}-${month}-${lastDayOfMonth+1}`;
+
+    console.log(userId);
 
     let thisMonthsTransactions = await Transaction.find({_ownerId: userId, date: {$gt: startingDate, $lt: endingDate}}).lean();
+
+    console.log(thisMonthsTransactions);
     
     return [thisMonthsTransactions, startingDate, endingDate];
 }
