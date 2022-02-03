@@ -15,6 +15,5 @@ exports.makeDeposit = async function(userId, category, amount) {
 
 
 async function updateUserInfo(userId, amount) {
-    console.log(amount, typeof amount);
    await Balance.updateOne({_ownerId: userId}, {$inc: {balance: amount} })
 }
