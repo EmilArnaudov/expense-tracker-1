@@ -127,6 +127,7 @@ input[type=number]::-webkit-outer-spin-button {
 
   .a {
       margin-left: 55.5rem;
+      float: right;
   }
 
   .a:hover {
@@ -141,6 +142,12 @@ input[type=number]::-webkit-outer-spin-button {
     -moz-box-shadow: 0px 0px 168px 15px rgba(137,46,255,0.9);
     box-shadow: 0px 0px 168px 15px rgba(137,46,255,0.9);
   }
+
+.no-glow {
+    background-color: #d3d3d3;
+    border-radius: 5%;
+    padding: 20px;
+}
 
   .transaction-table {
     background-color: #d3d3d3;
@@ -230,3 +237,5 @@ input[type=number]::-webkit-outer-spin-button {
       size: 20%;
   }
 
+.user-info {
+}
