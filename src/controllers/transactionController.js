@@ -49,6 +49,8 @@ router.get('/add', async (req, res) => {
 
 router.get('/history', async (req, res) => {
     let [thisMonthsTransactions, startingDate, endingDate] = await getTransactionsNoDate(req.user._id);
+    console.log(thisMonthsTransactions, startingDate, endingDate);
+
     res.render('transactionHistory', { allTransactions: thisMonthsTransactions, startingDate, endingDate});
 })
 

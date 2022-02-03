@@ -4,6 +4,7 @@ const { saveBudget } = require('../services/budgetService');
 const { resetBudget } = require('../services/budgetService');
 const { deleteBudget } = require('../services/budgetService');
 const { getCommand } = require('../services/budgetService');
+const { getTotalBudgetValues } = require('../services/budgetService');
 const Budget = require('../models/Budget');
 
 
@@ -11,7 +12,9 @@ const Budget = require('../models/Budget');
 router.get('/all', async (req, res) => {
     let budgets = await Budget.find({_ownerId: req.user._id}).lean();
     
-    res.render('budgets', {budgets})
+    let [totalCurrentValue, totalMaxValue, totalPercentageFilled] = getTotalBudgetValues(budgets);
+
+    res.render('budgets', {budgets, totalCurrentValue, totalMaxValue, totalPercentageFilled})
 })
 
 router.get('/create', (req, res) => {

@@ -101,12 +101,13 @@ async function insertBudgetNameInTransaction(budgetId, transaction) {
 
     let lastDayOfMonth = getDaysInMonth(monthFunc, yearFunc);
 
-    let startingDate = `${year}-${month}-00`;
-    let endingDate = `${year}-${month}-${lastDayOfMonth+1}`;
+    let startingDate = `${year}-${month}-01`;
+    let endingDate = `${year}-${month}-${lastDayOfMonth}`;
 
-    console.log(userId);
+    let startingDateMongoose = `${year}-${month}-00`;
+    let endingDateMongoose = `${year}-${month}-${lastDayOfMonth+1}`;
 
-    let thisMonthsTransactions = await Transaction.find({_ownerId: userId, date: {$gt: startingDate, $lt: endingDate}}).lean();
+    let thisMonthsTransactions = await Transaction.find({_ownerId: userId, date: {$gt: startingDateMongoose, $lt: endingDateMongoose}}).lean();
 
     console.log(thisMonthsTransactions);
     

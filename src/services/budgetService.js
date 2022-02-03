@@ -29,3 +29,17 @@ exports.getCommand = function(data) {
 exports.deleteBudget = async function(budgetId) {
     await Budget.deleteOne({_id: budgetId});
 }
+
+exports.getTotalBudgetValues = function(budgets) {
+    let currentValue = 0;
+    let maxValue = 0;
+
+    budgets.forEach(budget => {
+        currentValue += budget.currentValue;
+        maxValue += budget.maxValue;
+    })
+
+    let totalPercentageFilled = (currentValue / maxValue) * 100
+
+    return [currentValue.toFixed(2), maxValue.toFixed(2), totalPercentageFilled];
+}
