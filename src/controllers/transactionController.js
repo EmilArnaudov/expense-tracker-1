@@ -6,6 +6,7 @@ const { deleteTransaction } = require('../services/transactionService');
 const { getTransactionsNoDate } = require('../services/transactionService');
 const { getTransactionsWithDate } = require('../services/transactionService');
 const depositController = require('./depositController');
+const { getCommand } = require('../services/budgetService');
 const Budget = require('../models/Budget');
 const Transaction = require('../models/Transaction');
 
@@ -37,8 +38,18 @@ router.post('/edit/:id', async (req, res) => {
 
 })
 
-router.get('/delete/:id', async (req, res) => {
-    deleteTransaction(req.params.id, req.user._id);
+router.get('/delete/:id', (req, res) => {
+    res.render('transactionDelete');
+})
+
+router.post('/delete/:id', async (req, res) => {
+    let txId = req.params.id;
+    let command = getCommand(req.body);
+
+    if (command === 'Yes') {
+        await deleteTransaction(txId, req.user._id)
+    }
+
     res.redirect('/');
 })
 

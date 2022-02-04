@@ -39,20 +39,16 @@
   <div class="col-lg-3"></div>
 </div>
 
-    <div class="card center budget-card" style="width: 60rem;">
+    <div class="card center budget-card" style="width: 65rem;">
     <div class="card-body">
       <h5 class="card-title budget-title">Monthly Budgets Total</h5>
       <p class="budget-values">${{totalCurrentValue}} <small class="text-muted text-size-sm">/ ${{totalMaxValue}}</small></p>
       <div class="progress">
         <div class="progress-bar bg-success" role="progressbar" style="width: {{totalPercentageFilled}}%" aria-valuenow="{{totalPercentageFilled}}" aria-valuemin="0" aria-valuemax="100"></div>
       </div>
-      <div id="budget-buttons align-right" class="hidden">
-        <p class="text-danger">Warning! Reset your budget only at the end of the month!</p>
-        <a href="/budget/reset/{{_id}}" class="btn btn-warning">Reset</a>
-        <a href="/budget/delete/{{_id}}" class="btn btn-danger">Delete</a>
-      </div>
     </div>
   </div>
+  <br>
 
   {{#each budgets}}
     {{> budgetCard}}
